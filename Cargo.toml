@@ -12,6 +12,15 @@ keywords = ["ethereum", "portal-network"]
 categories = ["cryptography::cryptocurrencies"]
 description = "A Rust implementation of the Ethereum Portal Network"
 
+[lib]
+name = "trin"
+crate-type = ["rlib", "dylib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "trin"
+path = "src/main.rs"
+
 [dependencies]
 alloy-primitives = "0.7.0"
 alloy-rlp = "0.3.4"
