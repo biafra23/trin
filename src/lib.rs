@@ -223,7 +223,7 @@ extern crate android_logger;
 use log::LevelFilter;
 use android_logger::Config;
 #[no_mangle]
-extern fn Java_dev_matrix_rust_MainActivity_runTrin(env: JNIEnv, _: JObject) -> jstring {
+extern fn Java_com_jaeckel_androidportal_MainActivityKt_runTrin(env: JNIEnv, _: JObject) -> jstring {
     android_logger::init_once(
         Config::default().with_max_level(LevelFilter::Trace),
     );
