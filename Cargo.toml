@@ -59,6 +59,9 @@ trin-utils = { path = "trin-utils" }
 trin-validation = { path = "trin-validation" }
 url = "2.3.1"
 utp-rs = { git = "https://github.com/ethereum/utp", tag = "v0.1.0-alpha.12" }
+jni = "0.19.0"
+android_logger = "0.13.3"
+log = "0.4.21"
 
 [dev-dependencies]
 ethers-core = { version = "2.0", default-features = false}

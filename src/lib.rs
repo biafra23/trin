@@ -2,7 +2,9 @@
 #![warn(clippy::uninlined_format_args)]
 
 use std::sync::Arc;
-
+use jni::JNIEnv;
+use jni::objects::{JObject};
+use jni::sys::jstring;
 use rpc::{launch_jsonrpc_server, RpcServerHandle};
 use tokio::sync::{mpsc, RwLock};
 use tracing::info;
@@ -54,25 +56,39 @@ pub async fn run_trin(
 
     let portalnet_config = PortalnetConfig::new(&trin_config, private_key);
 
+    debug!("portalnet_config");
+
     // Initialize base discovery protocol
     let mut discovery = Discovery::new(
         portalnet_config.clone(),
         node_data_dir.clone(),
         trin_config.network.clone(),
     )?;
+    debug!("discovery created.");
+
     let talk_req_rx = discovery.start().await?;
+    debug!("discovery started.");
+
     let discovery = Arc::new(discovery);
+    debug!("prometheus_exporter");
 
     // Initialize prometheus metrics
     if let Some(addr) = trin_config.enable_metrics_with_url {
         prometheus_exporter::start(addr)?;
     }
+    debug!("1");
 
     // Initialize and spawn uTP socket
     let (utp_talk_reqs_tx, utp_talk_reqs_rx) = mpsc::unbounded_channel();
+    debug!("2");
     let discv5_utp_socket = Discv5UdpSocket::new(Arc::clone(&discovery), utp_talk_reqs_rx);
+
+    debug!("3");
     let utp_socket = UtpSocket::with_socket(discv5_utp_socket);
+    debug!("4");
     let utp_socket = Arc::new(utp_socket);
+    debug!("5");
+    debug!("node_data_dir: {:?}", node_data_dir);
 
     let storage_config = PortalStorageConfig::new(
         trin_config.mb.into(),
@@ -99,7 +115,7 @@ pub async fn run_trin(
                 storage_config.clone(),
                 header_oracle.clone(),
             )
-            .await?
+                .await?
         } else {
             (None, None, None, None, None)
         };
@@ -122,7 +138,7 @@ pub async fn run_trin(
             storage_config.clone(),
             header_oracle.clone(),
         )
-        .await?
+            .await?
     } else {
         (None, None, None, None, None)
     };
@@ -145,7 +161,7 @@ pub async fn run_trin(
             storage_config.clone(),
             header_oracle.clone(),
         )
-        .await?
+            .await?
     } else {
         (None, None, None, None, None)
     };
@@ -182,7 +198,7 @@ pub async fn run_trin(
             utp_talk_reqs_tx,
             trin_config.network.clone(),
         )
-        .await;
+            .await;
         events.start().await;
     });
 
@@ -197,4 +213,26 @@ pub async fn run_trin(
     }
 
     Ok(rpc_handle)
+}
+
+use futures::executor;
+
+#[macro_use] extern crate log;
+extern crate android_logger;
+
+use log::LevelFilter;
+use android_logger::Config;
+#[no_mangle]
+extern fn Java_dev_matrix_rust_MainActivity_runTrin(env: JNIEnv, _: JObject) -> jstring {
+    android_logger::init_once(
+        Config::default().with_max_level(LevelFilter::Trace),
+    );
+
+    let result_future = run_trin(TrinConfig::default());
+
+    let result = executor::block_on(result_future);
+    match result {
+        Ok(_) => env.new_string("Ok.").unwrap().into_inner(),
+        _default => env.new_string("Error.").unwrap().into_inner()
+    }
 }
