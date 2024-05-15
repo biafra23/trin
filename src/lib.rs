@@ -2,12 +2,10 @@
 #![warn(clippy::uninlined_format_args)]
 
 use std::sync::Arc;
-use jni::JNIEnv;
-use jni::objects::{JObject};
-use jni::sys::jstring;
 use rpc::{launch_jsonrpc_server, RpcServerHandle};
 use tokio::sync::{mpsc, RwLock};
 use tracing::info;
+use tracing::log::debug;
 use tree_hash::TreeHash;
 use utp_rs::socket::UtpSocket;
 
@@ -213,26 +211,4 @@ pub async fn run_trin(
     }
 
     Ok(rpc_handle)
-}
-
-use futures::executor;
-
-#[macro_use] extern crate log;
-extern crate android_logger;
-
-use log::LevelFilter;
-use android_logger::Config;
-#[no_mangle]
-extern fn Java_com_jaeckel_androidportal_MainActivityKt_runTrin(env: JNIEnv, _: JObject) -> jstring {
-    android_logger::init_once(
-        Config::default().with_max_level(LevelFilter::Trace),
-    );
-
-    let result_future = run_trin(TrinConfig::default());
-
-    let result = executor::block_on(result_future);
-    match result {
-        Ok(_) => env.new_string("Ok.").unwrap().into_inner(),
-        _default => env.new_string("Error.").unwrap().into_inner()
-    }
 }
