@@ -26,7 +26,7 @@ pub fn stun_for_external(local_socket_addr: &SocketAddr) -> Option<SocketAddr> {
             return None;
         }
     };
-    info!("Connecting to STUN server to find public network endpoint");
+    info!("Connecting to STUN server to find public network endpoint {}", STUN_SERVER);
     let external_addr = stunclient::StunClient::new(
         STUN_SERVER
             .parse()

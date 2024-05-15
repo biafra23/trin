@@ -210,12 +210,13 @@ impl Discovery {
     pub async fn start(&mut self) -> Result<mpsc::Receiver<TalkRequest>, String> {
         info!(enr = %self.local_enr(), "Starting discv5 with");
         debug!(enr = ?self.local_enr(), "Discv5 enr details");
-
+        debug!("Starting Discv5");
         self.discv5
             .start()
             .await
             .map_err(|e| format!("Failed to start discv5 server: {e:?}"))?;
         self.started = true;
+        debug!("Started Discv5");
 
         let mut event_rx = self
             .discv5
@@ -484,7 +485,7 @@ mod tests {
             node_data_dir.clone(),
             MAINNET.clone(),
         )
-        .unwrap();
+            .unwrap();
         let data = fs::read_to_string(trin_enr_file_location.clone()).unwrap();
         let old_enr = Enr::from_str(&data).unwrap();
         assert_eq!(discovery.local_enr(), old_enr);
@@ -497,7 +498,7 @@ mod tests {
             node_data_dir.clone(),
             MAINNET.clone(),
         )
-        .unwrap();
+            .unwrap();
         assert_ne!(discovery.local_enr(), old_enr);
         let data = fs::read_to_string(trin_enr_file_location.clone()).unwrap();
         let old_enr = Enr::from_str(&data).unwrap();

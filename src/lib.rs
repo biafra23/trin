@@ -31,6 +31,9 @@ use trin_validation::oracle::HeaderOracle;
 pub async fn run_trin(
     trin_config: TrinConfig,
 ) -> Result<RpcServerHandle, Box<dyn std::error::Error>> {
+
+    info!("---------> Running run_trin. inside trin <--------------");
+
     // Panic early on a windows build that is trying to use IPC, which is unsupported for now
     // Make sure not to panic on non-windows configurations.
     #[cfg(windows)]
