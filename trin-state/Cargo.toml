@@ -14,7 +14,8 @@ authors = ["https://github.com/ethereum/trin/graphs/contributors"]
 alloy-primitives = { version = "0.7.0", features = ["getrandom"] }
 alloy-rlp = "0.3.4"
 anyhow = "1.0.68"
-discv5 = { version = "0.4.1", features = ["serde"] }
+#discv5 = { version = "0.4.1", features = ["serde"] }
+discv5 = { path = "/Users/biafra/AndroidPortal/discv5", features = ["serde"] }
 eth_trie = { git = "https://github.com/kolbyml/eth-trie.rs.git", rev = "11ec003e3276e1413f06328ab746af5d99f112bb" }
 ethportal-api = { path = "../ethportal-api" }
 keccak-hash = "0.10.0"
@@ -23,7 +24,11 @@ portalnet = { path = "../portalnet" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.89"
 thiserror = "1.0.57"
-tokio = {version = "1.14.0", features = ["full"]}
+#tokio = {version = "1.14.0", features = ["full"]}
+tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
+tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 tracing = "0.1.36"
 trin-storage = { path = "../trin-storage" }
 trin-validation = { path = "../trin-validation" }

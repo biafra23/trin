@@ -13,7 +13,8 @@ authors = ["https://github.com/ethereum/trin/graphs/contributors"]
 [dependencies]
 alloy-primitives = "0.7.0"
 anyhow = "1.0.68"
-discv5 = { version = "0.4.1", features = ["serde"] }
+#discv5 = { version = "0.4.1", features = ["serde"] }
+discv5 = { path = "/Users/biafra/AndroidPortal/discv5", features = ["serde"] }
 ethportal-api = {path = "../ethportal-api"}
 r2d2 = "0.8.9"
 r2d2_sqlite = "0.24.0"

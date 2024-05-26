@@ -27,7 +27,8 @@ alloy-rlp = "0.3.4"
 anyhow = "1.0.68"
 clap = { version = "4.2.1", features = ["derive"] }
 dirs = "5.0.1"
-discv5 = { version = "0.4.1", features = ["serde"] }
+#discv5 = { version = "0.4.1", features = ["serde"] }
+discv5 = { path = "/Users/biafra/AndroidPortal/discv5", features = ["serde"] }
 ethereum_ssz = "0.5.3"
 ethers = { version = "2.0"}
 ethers-providers = { version = "2.0", features = ["ws"] }
@@ -47,7 +48,12 @@ serde_json = {version = "1.0.89", features = ["preserve_order"]}
 sha3 = "0.9.1"
 surf = { version = "2.3.2", default-features = false, features = ["h1-client-rustls", "middleware-logger", "encoding"] } # we use rustls because OpenSSL cause issues compiling on aarch64
 tempfile = "3.3.0"
-tokio = { version = "1.14.0", features = ["full"] }
+#tokio = { version = "1.14.0", features = ["full"] }
+tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
+tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
+tokio-test = { path = "/Users/biafra/AndroidPortal/tokio/tokio-test" }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 tracing = "0.1.36"
 tracing-subscriber = "0.3.15"
 tree_hash = { git = "https://github.com/KolbyML/tree_hash.git", rev = "8aaf8bb4184148768d48e2cfbbdd0b95d1da8730" }

@@ -13,7 +13,8 @@ authors = ["https://github.com/ethereum/trin/graphs/contributors"]
 [dependencies]
 alloy-primitives = "0.7.0"
 anyhow = "1.0.68"
-discv5 = { version = "0.4.1", features = ["serde"] }
+#discv5 = { version = "0.4.1", features = ["serde"] }
+discv5 = { path = "/Users/biafra/AndroidPortal/discv5", features = ["serde"] }
 ethereum_ssz = "0.5.3"
 ethportal-api = {path = "../ethportal-api"}
 parking_lot = "0.11.2"
@@ -21,7 +22,11 @@ portalnet = { path = "../portalnet" }
 r2d2 = "0.8.9"
 r2d2_sqlite = "0.24.0"
 serde_json = "1.0.89"
-tokio = { version = "1.14.0", features = ["full"] }
+#tokio = { version = "1.14.0", features = ["full"] }
+tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
+tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 tracing = "0.1.36"
 tree_hash = { git = "https://github.com/KolbyML/tree_hash.git", rev = "8aaf8bb4184148768d48e2cfbbdd0b95d1da8730" }
 trin-metrics = { path = "../trin-metrics" }
@@ -38,6 +43,6 @@ rstest = "0.18.2"
 serial_test = "0.5.1"
 ssz_types = { git = "https://github.com/KolbyML/ssz_types.git", rev = "2a5922de75f00746890bf4ea9ad663c9d5d58efe" }
 test-log = { version = "0.2.11", features = ["trace"] }
-tokio-test = "0.4.2"
+tokio-test = { path = "/Users/biafra/AndroidPortal/tokio/tokio-test" }
 tracing-subscriber = "0.3.15"
 ureq = { version = "2.5.0", features = ["json"] }

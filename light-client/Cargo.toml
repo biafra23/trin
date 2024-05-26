@@ -32,7 +32,11 @@ ssz-rs = { git = "https://github.com/ralexstokes/ssz-rs", rev = "d09f55b4f855449
 ssz_types = { git = "https://github.com/KolbyML/ssz_types.git", rev = "2a5922de75f00746890bf4ea9ad663c9d5d58efe" }
 strum = { version = "0.26.1", features = ["derive"] }
 thiserror = "1.0.57"
-tokio = { version = "1", features = ["full"] }
+#tokio = { version = "1", features = ["full"] }
+tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
+tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 tracing = "0.1.36"
 tracing-subscriber = "0.3.15"
 tree_hash = { git = "https://github.com/KolbyML/tree_hash.git", rev = "8aaf8bb4184148768d48e2cfbbdd0b95d1da8730" }
