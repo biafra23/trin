@@ -27,7 +27,7 @@ thiserror = "1.0.57"
 #tokio = {version = "1.14.0", features = ["full"]}
 tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
 tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
-tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream" }
 tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 tracing = "0.1.36"
 trin-storage = { path = "../trin-storage" }

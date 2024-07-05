@@ -22,7 +22,7 @@ trin-utils = { path = "../trin-utils"}
 #tokio = { version = "1.14.0", features = ["full"] }
 tokio = { path = "/Users/biafra/AndroidPortal/tokio/tokio", features = ["full"] }
 tokio-macros = { path = "/Users/biafra/AndroidPortal/tokio/tokio-macros" }
-tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream", features = ["full"] }
+tokio-stream = { path = "/Users/biafra/AndroidPortal/tokio/tokio-stream" }
 tokio-util = { path = "/Users/biafra/AndroidPortal/tokio/tokio-util", features = ["full"] }
 hyper = "0.14.28"
 reth-ipc = { tag = "v0.2.0-beta.5", git = "https://github.com/paradigmxyz/reth.git"}

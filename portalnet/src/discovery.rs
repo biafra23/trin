@@ -216,7 +216,7 @@ impl Discovery {
             .await
             .map_err(|e| format!("Failed to start discv5 server: {e:?}"))?;
         self.started = true;
-        debug!("Started Discv5");
+        debug!("Started Discv5_");
 
         let mut event_rx = self
             .discv5
