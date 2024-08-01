@@ -5,7 +5,6 @@ use std::sync::Arc;
 use rpc::{launch_jsonrpc_server, RpcServerHandle};
 use tokio::sync::{mpsc, RwLock};
 use tracing::info;
-use tracing::log::debug;
 use tree_hash::TreeHash;
 use utp_rs::socket::UtpSocket;
 
@@ -64,7 +63,6 @@ pub async fn run_trin(
         trin_config.network.clone(),
     )?;
     let talk_req_rx = discovery.start().await?;
-    debug!("discovery started.");
 
     let discovery = Arc::new(discovery);
 
